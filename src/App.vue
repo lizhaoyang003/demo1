@@ -162,7 +162,7 @@ const quertClick = () => {
   .box-right {
     width: 100%;
     overflow-y: scroll;
-    padding: 10px;
+    // padding: 10px;
   }
 }
 </style>

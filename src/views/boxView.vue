@@ -122,8 +122,9 @@ const initMap = () => {
 </script>
 <style lang="scss" scoped>
 .boxView {
-  width: 100%;
-  height: 100%;
+  width: calc(100% - 20px);
+  height: calc(100% - 20px);
+  margin: 10px;
   background: #ccc;
   border-radius: 10px;
   box-shadow: 0px 5px 8px 0px rgba(89, 96, 199, 0.09);
