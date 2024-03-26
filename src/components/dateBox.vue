@@ -62,10 +62,11 @@ function dateChange(val) {
   if (diff.value > 390) {
     diffVal.value = 540 - diff.value;
     tabValue.value = '搬砖中';
-  } else if (0 < diff.value < 270) {
+  } else if (diff.value < 270) {
     diffVal.value = 540 - diff.value - 120;
     tabValue.value = '搬砖中';
   } else {
+    diffVal.value = 150;
     tabValue.value = '休息中';
   }
   console.log(dateDay, diffVal.value, '');
