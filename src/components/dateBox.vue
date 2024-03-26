@@ -43,8 +43,8 @@ const value = ref(
 const day = ref(new Date().toLocaleDateString());
 const value1 = ref(Date.now() + 1000 * 60 * 60 * 24 * 2);
 const value2 = ref(dayjs('2024-04-03 18:00:00'));
-const diff = ref(0);
-const diffVal = ref(0);
+const diff = ref();
+const diffVal = ref();
 const tabValue = ref('');
 onMounted(() => {});
 const lzyValue = computed(() => {
@@ -68,7 +68,7 @@ function dateChange(val) {
   } else {
     tabValue.value = '休息中';
   }
-  console.log(dateDay, diffVal.value);
+  console.log(dateDay, diffVal.value, 'aa');
 }
 </script>
 <style lang="scss" scoped>
