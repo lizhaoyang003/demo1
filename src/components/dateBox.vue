@@ -68,7 +68,7 @@ function dateChange(val) {
   } else {
     tabValue.value = '休息中';
   }
-  console.log(dateDay, diffVal.value, 'aa');
+  console.log(dateDay, diffVal.value);
 }
 </script>
 <style lang="scss" scoped>
