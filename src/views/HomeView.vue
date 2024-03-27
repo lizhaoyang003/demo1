@@ -37,7 +37,6 @@ import dateBox from '../components/dateBox.vue';
 </script>
 <style lang="scss" scoped>
 .homeBox {
-  width: 100%;
   padding: 10px;
   .box {
     display: flex;
