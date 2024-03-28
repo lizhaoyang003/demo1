@@ -14,7 +14,6 @@ import { BMPGL } from '../utils/loadBmap.js';
 
 const ak = ref('I72rPifNx4u2xsrk1bc3MW19k7zne3aM');
 const resultVal = ref('');
-const cityVal = ref('周口市川汇区中州颐和酒店');
 onMounted(() => {
   initMap();
 });
