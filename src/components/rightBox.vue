@@ -19,15 +19,14 @@
   </div>
 </template>
 <script setup>
-import { ref, nextTick, watch } from 'vue';
-import { useCounterStore, useNamesStore, urlStore } from '@/stores/counter';
+import { watch } from 'vue';
+import { useCounterStore, useNamesStore } from '@/stores/counter';
 import { storeToRefs } from 'pinia';
 // import { ElMessage } from 'element-plus';
 // import router from '@/router';
 const counter = useCounterStore();
 const names = useNamesStore();
-const urls = urlStore();
-const { count, count1 } = storeToRefs(counter);
+const { count } = storeToRefs(counter);
 watch(count, (newVal, val) => {
   console.log(newVal, val);
 });

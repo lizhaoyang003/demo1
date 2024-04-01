@@ -48,7 +48,7 @@ const diffVal = ref();
 const tabValue = ref('');
 onMounted(() => {});
 const lzyValue = computed(() => {
-  return (diffVal.value * 1.45).toFixed(2);
+  return (diffVal.value * 1.38).toFixed(2);
 });
 
 function reset() {
@@ -56,7 +56,7 @@ function reset() {
 }
 function dateChange(val) {
   const dateDay = Math.ceil(val / 1000 / 60);
-  if (dateDay < 0 || dateDay > 540) return;
+  if (dateDay <= 0 || dateDay > 540) return;
   if (dateDay == diff.value) return;
   diff.value = dateDay;
   if (diff.value > 390) {

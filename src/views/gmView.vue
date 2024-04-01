@@ -57,27 +57,28 @@ function gmStart() {
     console.log(Math.floor(Math.random() * topData.length));
   } else alert('随机');
 }
-function attack() {
-  for (let i = 0; i < 100; i++) {
-    const nub = Math.floor(Math.random() * topData.length);
-    topData[nub].right -= bottomData[i].left;
-    bottomData[i].right -= topData[nub].left;
-    determine();
-  }
-}
 
-function determine() {
-  // bottomData.forEach((ele, index) => {
-  //   if (ele.right <= 0) {
-  //     bottomData.splice(index, 1);
-  //   }
-  // });
-  // topData.forEach((ele, index) => {
-  //   if (ele.right <= 0) {
-  //     topData.splice(index, 1);
-  //   }
-  // });
-}
+// function attack() {
+//   for (let i = 0; i < 100; i++) {
+//     const nub = Math.floor(Math.random() * topData.length);
+//     topData[nub].right -= bottomData[i].left;
+//     bottomData[i].right -= topData[nub].left;
+//     determine();
+//   }
+// }
+
+// function determine() {
+// bottomData.forEach((ele, index) => {
+//   if (ele.right <= 0) {
+//     bottomData.splice(index, 1);
+//   }
+// });
+// topData.forEach((ele, index) => {
+//   if (ele.right <= 0) {
+//     topData.splice(index, 1);
+//   }
+// });
+// }
 </script>
 <style lang="scss" scoped>
 .box {
