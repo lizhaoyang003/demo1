@@ -29,6 +29,11 @@ const router = createRouter({
       path: '/gm',
       name: 'gm',
       component: () => import('../views/gmView.vue')
+    },
+    {
+      path: '/gm1',
+      name: 'gm1',
+      component: () => import('../views/gmView1.vue')
     }
   ]
 });
