@@ -1,7 +1,7 @@
 <template>
   <div class="gmView1" ref="gmView1">
     <div class="titleBox">
-      <div class="iconBox" @click="gmStart">
+      <div class="iconBox" @click="iconClick">
         <el-icon><RefreshLeft /></el-icon>
       </div>
       <el-select
@@ -175,6 +175,11 @@ const gmStart = (val) => {
 
 // 筛选框事件
 const selectChange = () => {
+  gmStart(state.value);
+};
+
+// 重置
+const iconClick = () => {
   gmStart(state.value);
 };
 </script>
