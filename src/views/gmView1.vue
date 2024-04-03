@@ -134,9 +134,8 @@ const addList = (item) => {
   const newDataList = dataList.value.filter((ele) => ele.value !== item.value);
   nextTick(() => {
     dataList.value = newDataList;
+    showD(item);
   });
-  showD(item);
-  // console.log(getDivDom.value[item.value]);
 };
 // 判定
 const showD = (item) => {
@@ -148,8 +147,11 @@ const showD = (item) => {
     });
     return;
   }
+  if (dataList.value.length == 0) {
+    alert('你赢了');
+    return;
+  }
   if (tabList.value.length == 7) alert('游戏结束');
-  if (dataList.value.length == 0) alert('你赢了');
 };
 // 开始
 const gmStart = (val) => {
