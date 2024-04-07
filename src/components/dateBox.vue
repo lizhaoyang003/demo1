@@ -42,7 +42,7 @@ const value = ref(
 );
 const day = ref(new Date().toLocaleDateString());
 const value1 = ref(Date.now() + 1000 * 60 * 60 * 24 * 2);
-const value2 = ref(dayjs('2024-04-03 18:00:00'));
+const value2 = ref(dayjs('2024-04-12 18:00:00'));
 const diff = ref();
 const diffVal = ref();
 const tabValue = ref('');

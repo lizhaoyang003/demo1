@@ -22,7 +22,7 @@
     <div class="gmBox" ref="gmBox">
       <div style="margin: 2px; position: relative">
         <div
-          class="gmBox1"
+          class="gmBox1 divDom"
           ref="getDivDom"
           v-for="(item, index) in dataList"
           :key="index"
@@ -34,20 +34,10 @@
             width: `${item.width}px`,
             height: `${item.width}px`
           }"
+          :disabled="false"
           @click="addList(item)"
         >
-          <el-icon v-if="item.bgc == 0"><Lightning /></el-icon>
-          <el-icon v-if="item.bgc == 1"><MoonNight /></el-icon>
-          <el-icon v-if="item.bgc == 2"><Moon /></el-icon>
-          <el-icon v-if="item.bgc == 3"><Cloudy /></el-icon>
-          <el-icon v-if="item.bgc == 4"><Pouring /></el-icon>
-          <el-icon v-if="item.bgc == 5"><Drizzling /></el-icon>
-          <el-icon v-if="item.bgc == 6"><Sunset /></el-icon>
-          <el-icon v-if="item.bgc == 7"><PartlyCloudy /></el-icon>
-          <el-icon v-if="item.bgc == 8"><MostlyCloudy /></el-icon>
-          <el-icon v-if="item.bgc == 9"><Ship /></el-icon>
-          <el-icon v-if="item.bgc == 10"><Sunny /></el-icon>
-          <el-icon v-if="item.bgc == 11"><Sunrise /></el-icon>
+          <img :src="`src/assets/images/${item.bgc}.png`" />
         </div>
       </div>
     </div>
@@ -59,21 +49,11 @@
         :style="{
           background: `${bgcList[item.bgc]}`,
           zIndex: `${item.zIndex}`,
-          width: `${item.width}px`
+          width: `${item.width}px`,
+          height: `${item.width}px`
         }"
       >
-        <el-icon v-if="item.bgc == 0"><Lightning /></el-icon>
-        <el-icon v-if="item.bgc == 1"><MoonNight /></el-icon>
-        <el-icon v-if="item.bgc == 2"><Moon /></el-icon>
-        <el-icon v-if="item.bgc == 3"><Cloudy /></el-icon>
-        <el-icon v-if="item.bgc == 4"><Pouring /></el-icon>
-        <el-icon v-if="item.bgc == 5"><Drizzling /></el-icon>
-        <el-icon v-if="item.bgc == 6"><Sunset /></el-icon>
-        <el-icon v-if="item.bgc == 7"><PartlyCloudy /></el-icon>
-        <el-icon v-if="item.bgc == 8"><MostlyCloudy /></el-icon>
-        <el-icon v-if="item.bgc == 9"><Ship /></el-icon>
-        <el-icon v-if="item.bgc == 10"><Sunny /></el-icon>
-        <el-icon v-if="item.bgc == 11"><Sunrise /></el-icon>
+        <img :src="`src/assets/images/${item.bgc}.png`" />
       </div>
     </div>
   </div>
@@ -117,7 +97,6 @@ const state = reactive({
 
 onMounted(() => {
   gmStart(state.value);
-  console.log(shuffleUniqueRandomNumbers());
 });
 // 添加无序数组
 function shuffleUniqueRandomNumbers(nub) {
@@ -128,6 +107,18 @@ function shuffleUniqueRandomNumbers(nub) {
   }
   return numbers;
 }
+
+// // 给每个元素添加是否被遮挡事件
+function addShow() {
+  io.disconnect();
+  const divDom = getDivDom.value;
+  if (!divDom) return;
+  nextTick(() => {
+    divDom.forEach((element) => {
+      io.observe(element);
+    });
+  });
+}
 // 点击某一个元素
 const addList = (item) => {
   tabList.value.push(item);
@@ -135,6 +126,7 @@ const addList = (item) => {
   nextTick(() => {
     dataList.value = newDataList;
     showD(item);
+    addShow();
   });
 };
 // 判定
@@ -168,11 +160,14 @@ const gmStart = (val) => {
         zIndex: 10 - index,
         left: (stateList[i] % index) + nub,
         top: (Math.floor(stateList[i] / index) % 10) + nub,
-        width: 38
+        width: 37
       });
       a++;
     }
   }
+  nextTick(() => {
+    addShow();
+  });
 };
 
 // 筛选框事件
@@ -184,6 +179,21 @@ const selectChange = () => {
 const iconClick = () => {
   gmStart(state.value);
 };
+
+// 判断元素是否被遮挡
+const io = new IntersectionObserver(
+  (data) => {
+    data.forEach((item) => {
+      item.target.style.pointerEvents = item.isVisible ? '' : 'none';
+      console.log(item.isVisible);
+    });
+  },
+  {
+    threshold: [1, 0],
+    delay: 500,
+    trackVisibility: true
+  }
+);
 </script>
 <style scoped lang="scss">
 .gmView1 {
@@ -213,16 +223,19 @@ const iconClick = () => {
     border: 1px solid #dadada;
     border-radius: 10px;
     .gmBox1 {
+      display: block;
       position: absolute;
-      // background: #ffb5e8;
       border-radius: 10px;
-      box-shadow: 0px 0 5px 0px rgba(89, 96, 199, 0.09);
+      box-shadow: 0px 0 15px 0px rgba(89, 96, 199, 0.09);
       border: 1px solid #707070;
-      text-align: center;
-      line-height: 38px;
-      font-size: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       cursor: pointer;
-      // transition: all 0.3s linear 0s;
+      img {
+        width: 90%;
+        height: 90%;
+      }
     }
   }
   .tabBox {
@@ -239,11 +252,13 @@ const iconClick = () => {
       border-radius: 10px;
       box-shadow: 0px 0 5px 0px rgba(89, 96, 199, 0.09);
       border: 1px solid #707070;
-      text-align: center;
-      line-height: 38px;
-      font-size: 20px;
-      cursor: pointer;
-      // transition: all 0.3s linear 0s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      img {
+        width: 90%;
+        height: 90%;
+      }
     }
   }
 }
