@@ -184,8 +184,8 @@ const iconClick = () => {
 const io = new IntersectionObserver(
   (data) => {
     data.forEach((item) => {
+      // 元素被遮挡添加禁用鼠标事件属性
       item.target.style.pointerEvents = item.isVisible ? '' : 'none';
-      console.log(item.isVisible);
     });
   },
   {
