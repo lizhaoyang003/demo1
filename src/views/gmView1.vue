@@ -21,40 +21,54 @@
     </div>
     <div class="gmBox" ref="gmBox">
       <div style="margin: 2px; position: relative">
-        <div
-          class="gmBox1 divDom"
-          ref="getDivDom"
+        <transition
+          appear
+          name="animate__animated animate__bounceInLeft"
+          enter-active-class="animate__fadeInDown"
+          leave-active-class="animate__fadeOutDown"
           v-for="(item, index) in dataList"
           :key="index"
-          :style="{
-            background: `${bgcList[item.bgc]}`,
-            zIndex: `${item.zIndex}`,
-            left: `${item.left * 40}px`,
-            top: `${item.top * 40}px`,
-            width: `${item.width}px`,
-            height: `${item.width}px`
-          }"
-          :disabled="false"
-          @click="addList(item)"
         >
-          <img :src="`src/assets/images/${item.bgc}.png`" />
-        </div>
+          <div
+            class="gmBox1 divDom"
+            ref="getDivDom"
+            :style="{
+              background: `${bgcList[item.bgc]}`,
+              zIndex: `${item.zIndex}`,
+              left: `${item.left * 40}px`,
+              top: `${item.top * 40}px`,
+              width: `${item.width}px`,
+              height: `${item.width}px`
+            }"
+            :disabled="false"
+            @click="addList(item)"
+          >
+            <img :src="`src/assets/images/${item.bgc}.png`" />
+          </div>
+        </transition>
       </div>
     </div>
     <div class="tabBox">
-      <div
-        class="gmBox1"
+      <transition
+        appear
+        name="animate__animated animate__bounceInLeft"
+        enter-active-class="animate__zoomIn"
+        leave-active-class="animate__fadeOutDown"
         v-for="(item, index) in tabList"
         :key="index"
-        :style="{
-          background: `${bgcList[item.bgc]}`,
-          zIndex: `${item.zIndex}`,
-          width: `${item.width}px`,
-          height: `${item.width}px`
-        }"
       >
-        <img :src="`src/assets/images/${item.bgc}.png`" />
-      </div>
+        <div
+          class="gmBox1"
+          :style="{
+            background: `${bgcList[item.bgc]}`,
+            zIndex: `${item.zIndex}`,
+            width: `${item.width}px`,
+            height: `${item.width}px`
+          }"
+        >
+          <img :src="`src/assets/images/${item.bgc}.png`" />
+        </div>
+      </transition>
     </div>
   </div>
 </template>
@@ -81,7 +95,7 @@ const getDivDom = ref(null);
 const gmBox = ref(null);
 const gmView1 = ref(null);
 const state = reactive({
-  value: 2,
+  value: 3,
   options: [
     { label: '难度1', value: 2 },
     { label: '难度2', value: 3 },
@@ -150,7 +164,7 @@ const gmStart = (val) => {
   dataList.value = [];
   tabList.value = [];
   let a = 0;
-  for (let index = 1; index <= val; index++) {
+  for (let index = 2; index <= val; index++) {
     const stateList = shuffleUniqueRandomNumbers(index * index);
     const nub = (10 - index) * 0.5;
     for (let i = 0; i < stateList.length; i++) {
