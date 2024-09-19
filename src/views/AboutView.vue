@@ -14,6 +14,11 @@
         :name="item.name"
       />
     </el-tabs>
+    <a href="macappstores://apps.apple.com/cn/app/%E5%BE%AE%E4%BF%A1/id836500024?mt=12&extRefUrl2=https%3A%2F%2Fmac.weixin.qq.com%2F&mt=12">打开appStore</a>
+    <a href="weixin://">打开微信</a>
+    <a href="tencent://">打开qq</a>
+    <a href="vscode://file/path/to/folder?folder=1">点击这里打开 VS Code 并导入代码</a>
+    <a href="qq:">点击这里打开 VS Code 并导入代码</a>
   </div>
 </template>
 <script setup>

@@ -11,7 +11,7 @@
         :class="`an${item.value}`"
         :style="{
           animationDelay: `${ele.value / 10 + 2.2}s`,
-          animationDuration: `${(ele.value % 2) + 2}s`
+          animationDuration: `${(ele.value % 2) + 5}s`
         }"
         v-for="(item, index) in list"
         :key="index"

@@ -1,12 +1,16 @@
 <template>
   <div class="box">
+    <div style="display: flex;">
+      <div @click="gmStart">重置</div>
+      <div style="margin-left: 10px;" @click="attack">>>>></div>
+    </div>
     <div class="topBox minBox">
       <div class="itemBox" v-for="item in topData" :key="item.key">
-        <div class="items" style="left: -10">{{ item.left }}</div>
+        <div class="items" style="left: 0">{{ item.left }}</div>
         <div class="itemImg">
           <el-icon><SwitchFilled /></el-icon>
         </div>
-        <div class="items" style="right: -10">{{ item.right }}</div>
+        <div class="items" style="right: 0">{{ item.right }}</div>
       </div>
     </div>
     <div style="height: 1px; width: 100%; background: black" />
@@ -24,12 +28,12 @@
 <script setup>
 import { onMounted, reactive, ref } from 'vue';
 const topData = reactive([
-  { left: 10, right: 15, key: 0, value: 3 },
-  { left: 10, right: 15, key: 1, value: 3 },
-  { left: 10, right: 15, key: 2, value: 3 }
+  { left: 10, right: 15, key: 0, value: 3, nub: 0 },
+  { left: 10, right: 15, key: 1, value: 3, nub: 0 },
+  { left: 10, right: 15, key: 2, value: 3, nub: 0 }
 ]);
 const bottomData = reactive([
-  { left: 100, right: 150, key: 0, value: 20 }
+  { left: 100, right: 150, key: 0, value: 20, nub: 0 }
   // { left: 10, right: 15, key: 1, value: 3 },
   // { left: 10, right: 15, key: 2, value: 3 },
   // { left: 10, right: 15, key: 3, value: 3 },
@@ -39,6 +43,12 @@ const bottomData = reactive([
 ]);
 const topVal = ref(0);
 const bottomVal = ref(0);
+const gmObj = reactive({
+  gma: "",
+  gmb: 0,
+  gmc: 0,
+});
+const gmNub = ref(0);
 onMounted(() => {
   gmStart();
 });
@@ -52,20 +62,26 @@ function gmStart() {
     bottomVal.value += key.value;
   });
   if (topVal.value > bottomVal.value) {
-    console.log(Math.floor(Math.random() * bottomData.length));
+    gmObj.gma = 0;
+    gmObj.gmb = getRandom(bottomData.length);
   } else if (bottomVal.value > topVal.value) {
-    console.log(Math.floor(Math.random() * topData.length));
+    gmObj.gma = 1;
+    gmObj.gmb = getRandom(topData.length);
   } else alert('随机');
 }
 
-// function attack() {
-//   for (let i = 0; i < 100; i++) {
-//     const nub = Math.floor(Math.random() * topData.length);
-//     topData[nub].right -= bottomData[i].left;
-//     bottomData[i].right -= topData[nub].left;
-//     determine();
-//   }
-// }
+function getRandom(len) {
+  console.log(Math.floor(Math.random() * len));
+  return Math.floor(Math.random() * len);
+}
+
+function attack() {
+  console.log(gmObj.gma);
+  if (gmObj.gma === 0) {
+
+  } else if (gmObj.gma === 1) {
+  }
+}
 
 // function determine() {
 // bottomData.forEach((ele, index) => {

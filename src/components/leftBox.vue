@@ -53,7 +53,8 @@ counter.$subscribe((mutation, state) => {
 .leftBox {
   border-radius: 10px;
   background: #fff;
-  box-shadow: 0px 5px 8px 0px rgba(89, 96, 199, 0.09);
+  box-shadow: 0px 5px 8px 0px rgba(89, 96, 199, 0.06);
+  transition: all 0.5s;
   margin: 10px;
   padding: 10px;
   width: 24%;
@@ -68,5 +69,9 @@ counter.$subscribe((mutation, state) => {
       align-items: center;
     }
   }
+}
+.leftBox:hover {
+  margin-top: 2px;
+  box-shadow: 0px 5px 8px 0px rgba(89, 96, 199, 0.1);
 }
 </style>
