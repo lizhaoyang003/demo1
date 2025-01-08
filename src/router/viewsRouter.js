@@ -22,5 +22,9 @@ export default [
   {
     path: '/gm2',
     name: 'gm2'
-  }
+  },
+  {
+    path: '/gm3',
+    name: 'gm3'
+  },
 ];

@@ -39,6 +39,11 @@ const router = createRouter({
       path: '/gm2',
       name: 'gm2',
       component: () => import('../views/gmView2.vue')
+    },
+    {
+      path: '/gm3',
+      name: 'gm3',
+      component: () => import('../views/basic.vue')
     }
   ]
 });
